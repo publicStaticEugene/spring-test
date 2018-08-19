@@ -1,21 +1,28 @@
 package com.spring.app1;
 
+import com.spring.app1.logger.EventLogger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class App {
-    private static Client client;
-    private static ConsoleEventLogger eventLogger;
+    private final Client client;
+    private final EventLogger eventLogger;
 
-    public static void main(String[] args) {
-        App app = new App();
+    public App(final Client client, final EventLogger eventLogger) {
+        this.client = client;
+        this.eventLogger = eventLogger;
+    }
 
-        client = new Client(1, "client 1");
-        eventLogger = new ConsoleEventLogger();
+    public static void main(final String[] args) {
+        final ApplicationContext context = new ClassPathXmlApplicationContext("spring-app-context.xml");
+        final App app = context.getBean("app", App.class);
 
         app.logEvent("event for 1");
         app.logEvent("event for 2");
     }
 
-    public void logEvent(String msg) {
-        String message = msg.replaceAll(client.getId() + "", client.getFullName());
+    private void logEvent(final String msg) {
+        final String message = msg.replaceAll(client.getId() + "", client.getFullName());
         eventLogger.logEvent(message);
     }
 }

@@ -1,11 +1,8 @@
 package com.spring.app1;
 
 public class Client {
-    private int id;
-    private String fullName;
-
-    public Client() {
-    }
+    private final int id;
+    private final String fullName;
 
     public Client(final int id, final String fullName) {
         this.id = id;
@@ -16,15 +13,8 @@ public class Client {
         return id;
     }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(final String fullName) {
-        this.fullName = fullName;
-    }
 }
