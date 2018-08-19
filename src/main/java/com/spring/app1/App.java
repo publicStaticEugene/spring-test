@@ -4,10 +4,11 @@ import com.spring.app1.bean.Client;
 import com.spring.app1.bean.Event;
 import com.spring.app1.logger.EventLogger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
-    private static ApplicationContext context;
+    private static ConfigurableApplicationContext context;
 
     private final Client client;
     private final EventLogger eventLogger;
@@ -23,6 +24,8 @@ public class App {
 
         app.logEvent("event for 1");
         app.logEvent("event for 2");
+
+        context.close();
     }
 
     private void logEvent(final String msg) {

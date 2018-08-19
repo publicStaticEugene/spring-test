@@ -14,7 +14,7 @@
 
     <bean id="app" class="com.spring.app1.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
 
     <bean id="event" class="com.spring.app1.bean.Event" scope="prototype">
@@ -23,6 +23,15 @@
         </constructor-arg>
         <constructor-arg>
             <bean class="java.text.DateFormat" factory-method="getInstance"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="cacheFileEventLogger" class="com.spring.app1.logger.CacheFileEventLogger"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="fileName" value="log\\log"/>
+        <constructor-arg name="cacheSize" value="4"/>
+        <constructor-arg name="cache">
+            <bean class="java.util.ArrayList"/>
         </constructor-arg>
     </bean>
 </beans>
