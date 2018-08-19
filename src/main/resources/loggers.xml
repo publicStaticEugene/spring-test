@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="eventLogger" class="com.spring.app1.logger.ConsoleEventLogger"/>
+
+    <!--suppress SpringXmlModelInspection -->
+    <bean id="abstractFileEventLogger" init-method="init" abstract="true">
+        <constructor-arg value="log\\log.txt"/>
+    </bean>
+
+    <bean id="fileEventLogger" class="com.spring.app1.logger.FileEventLogger"
+          parent="abstractFileEventLogger"/>
+
+    <bean id="cacheFileEventLogger" class="com.spring.app1.logger.CacheFileEventLogger"
+          destroy-method="destroy" parent="abstractFileEventLogger">
+        <constructor-arg name="cacheSize" value="4"/>
+    </bean>
+</beans>

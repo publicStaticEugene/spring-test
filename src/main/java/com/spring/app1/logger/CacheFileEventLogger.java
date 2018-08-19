@@ -5,16 +5,16 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CacheFileEventLogger extends FileEventLogger {
     private final int cacheSize;
-    private final List<Event> cache;
+    private final List<Event> cache = new ArrayList<Event>();
 
-    public CacheFileEventLogger(final String fileName, final int cacheSize, final List<Event> cache) {
+    public CacheFileEventLogger(final String fileName, final int cacheSize) {
         super(fileName);
         this.cacheSize = cacheSize;
-        this.cache = cache;
     }
 
     @Override

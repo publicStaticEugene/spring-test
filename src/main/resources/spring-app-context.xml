@@ -5,12 +5,12 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="com.spring.app1.bean.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="client one"/>
     </bean>
-
-    <bean id="eventLogger" class="com.spring.app1.logger.ConsoleEventLogger"/>
 
     <bean id="app" class="com.spring.app1.App">
         <constructor-arg ref="client"/>
@@ -26,12 +26,5 @@
         </constructor-arg>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="com.spring.app1.logger.CacheFileEventLogger"
-          init-method="init" destroy-method="destroy">
-        <constructor-arg name="fileName" value="log\\log"/>
-        <constructor-arg name="cacheSize" value="4"/>
-        <constructor-arg name="cache">
-            <bean class="java.util.ArrayList"/>
-        </constructor-arg>
-    </bean>
+
 </beans>

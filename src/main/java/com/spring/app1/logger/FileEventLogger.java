@@ -27,6 +27,7 @@ public class FileEventLogger implements EventLogger {
     }
 
     protected void init() throws IOException {
+        System.out.println("init() " + getClass().getName());
         final File file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();
@@ -35,4 +36,5 @@ public class FileEventLogger implements EventLogger {
             throw new IOException("can not write to the file: " + fileName);
         }
     }
+
 }
