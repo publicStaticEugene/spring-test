@@ -5,7 +5,7 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="client" class="com.spring.app1.Client">
+    <bean id="client" class="com.spring.app1.bean.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="client one"/>
     </bean>
@@ -15,5 +15,14 @@
     <bean id="app" class="com.spring.app1.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
+    </bean>
+
+    <bean id="event" class="com.spring.app1.bean.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="java.text.DateFormat" factory-method="getInstance"/>
+        </constructor-arg>
     </bean>
 </beans>

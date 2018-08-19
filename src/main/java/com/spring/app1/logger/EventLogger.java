@@ -1,5 +1,7 @@
 package com.spring.app1.logger;
 
+import com.spring.app1.bean.Event;
+
 public interface EventLogger {
-    void logEvent(String msg);
+    void logEvent(Event event);
 }
