@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CacheFileEventLogger extends FileEventLogger {
     private final int cacheSize;
-    private final List<Event> cache = new ArrayList<Event>();
+    private final List<Event> cache = new ArrayList<>();
 
     public CacheFileEventLogger(final String fileName, final int cacheSize) {
         super(fileName);
@@ -31,7 +31,8 @@ public class CacheFileEventLogger extends FileEventLogger {
     public void destroy() {
         for (final Event event : cache) {
             try {
-                FileUtils.writeStringToFile(new File(getFileName()), event.toString() + "\n", "UTF-8", true);
+                FileUtils.writeStringToFile(new File(getFileName()),
+                        event.toString() + "\n", "UTF-8", true);
             } catch (final IOException e) {
                 e.printStackTrace();
             }

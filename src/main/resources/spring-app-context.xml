@@ -10,11 +10,19 @@
     <bean id="client" class="com.spring.app1.bean.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="client one"/>
+        <property name="greeting" value="Hello there!"/>
     </bean>
 
     <bean id="app" class="com.spring.app1.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg>
+            <map key-type="com.spring.app1.logger.EventType"
+                 value-type="com.spring.app1.logger.EventLogger">
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <bean id="event" class="com.spring.app1.bean.Event" scope="prototype">
@@ -25,6 +33,4 @@
             <bean class="java.text.DateFormat" factory-method="getInstance"/>
         </constructor-arg>
     </bean>
-
-
 </beans>

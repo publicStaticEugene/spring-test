@@ -20,12 +20,14 @@ public class FileEventLogger implements EventLogger {
 
     public void logEvent(final Event event) {
         try {
-            FileUtils.writeStringToFile(new File(fileName), event.toString(), Charset.forName("UTF-8"), true);
+            FileUtils.writeStringToFile(new File(fileName), event.toString() + "\n",
+                    Charset.forName("UTF-8"), true);
         } catch (final IOException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "unused"})
     protected void init() throws IOException {
         System.out.println("init() " + getClass().getName());
         final File file = new File(fileName);

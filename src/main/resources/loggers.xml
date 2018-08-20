@@ -6,7 +6,7 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <bean id="eventLogger" class="com.spring.app1.logger.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="com.spring.app1.logger.ConsoleEventLogger"/>
 
     <!--suppress SpringXmlModelInspection -->
     <bean id="abstractFileEventLogger" init-method="init" abstract="true">
@@ -19,5 +19,14 @@
     <bean id="cacheFileEventLogger" class="com.spring.app1.logger.CacheFileEventLogger"
           destroy-method="destroy" parent="abstractFileEventLogger">
         <constructor-arg name="cacheSize" value="4"/>
+    </bean>
+
+    <bean id="combinedEventLogger" class="com.spring.app1.logger.CombinedEventLogger">
+        <constructor-arg name="loggers">
+            <list value-type="com.spring.app1.logger.EventLogger">
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
     </bean>
 </beans>
