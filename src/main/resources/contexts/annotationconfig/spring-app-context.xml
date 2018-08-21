@@ -15,13 +15,13 @@
 
     <context:property-placeholder location="classpath:props/*.properties"/>
 
-    <util:map id="loggersMap" key-type="com.spring.app1.logger.EventType"
+    <util:map id="loggerMap" key-type="com.spring.app1.logger.EventType"
               value-type="com.spring.app1.logger.EventLogger">
         <entry key="INFO" value-ref="consoleEventLogger"/>
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <util:list id="loggersList">
+    <util:list id="loggerList">
         <ref bean="consoleEventLogger"/>
         <ref bean="fileEventLogger"/>
     </util:list>

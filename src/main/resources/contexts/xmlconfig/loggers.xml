@@ -25,14 +25,14 @@
     </bean>
 
     <bean id="combinedEventLogger" class="com.spring.app1.logger.CombinedEventLogger"
-          c:loggers-ref="loggersList"/>
+          c:loggers-ref="loggerList"/>
 
-    <util:map id="loggersMap">
+    <util:map id="loggerMap">
         <entry key="INFO" value-ref="consoleEventLogger"/>
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <util:list id="loggersList">
+    <util:list id="loggerList">
         <ref bean="consoleEventLogger"/>
         <ref bean="fileEventLogger"/>
     </util:list>

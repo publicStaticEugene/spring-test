@@ -22,7 +22,7 @@
     <bean id="app" class="com.spring.app1.App"
           c:client-ref="client"
           c:eventLogger-ref="cacheFileEventLogger"
-          p:loggers-ref="loggersMap"/>
+          p:loggers-ref="loggerMap"/>
 
     <!-- Prototypes -->
     <bean id="event" class="com.spring.app1.bean.Event" scope="prototype"
