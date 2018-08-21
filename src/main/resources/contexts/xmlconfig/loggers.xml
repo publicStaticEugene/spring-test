@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util
+            https://www.springframework.org/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <bean id="consoleEventLogger" class="com.spring.app1.logger.ConsoleEventLogger"/>
+
+    <!--suppress SpringXmlModelInspection -->
+    <bean id="abstractFileEventLogger" init-method="init" abstract="true">
+        <constructor-arg value="${fileName}"/>
+    </bean>
+
+    <bean id="fileEventLogger" class="com.spring.app1.logger.FileEventLogger"
+          parent="abstractFileEventLogger"/>
+
+    <bean id="cacheFileEventLogger" class="com.spring.app1.logger.CacheFileEventLogger"
+          destroy-method="destroy" parent="abstractFileEventLogger"
+          c:cacheSize="${cacheSize}">
+    </bean>
+
+    <bean id="combinedEventLogger" class="com.spring.app1.logger.CombinedEventLogger"
+          c:loggers-ref="loggersList"/>
+
+    <util:map id="loggersMap">
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+        <entry key="ERROR" value-ref="combinedEventLogger"/>
+    </util:map>
+
+    <util:list id="loggersList">
+        <ref bean="consoleEventLogger"/>
+        <ref bean="fileEventLogger"/>
+    </util:list>
+</beans>

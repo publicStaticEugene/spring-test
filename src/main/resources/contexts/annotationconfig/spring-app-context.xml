@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            https://www.springframework.org/context/spring-context.xsd
+            http://www.springframework.org/schema/util
+            https://www.springframework.org/util/spring-util.xsd">
+
+    <context:component-scan base-package="com.spring.app1"/>
+
+    <context:property-placeholder location="classpath:props/*.properties"/>
+
+    <util:map id="loggersMap" key-type="com.spring.app1.logger.EventType"
+              value-type="com.spring.app1.logger.EventLogger">
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+        <entry key="ERROR" value-ref="combinedEventLogger"/>
+    </util:map>
+
+    <util:list id="loggersList">
+        <ref bean="consoleEventLogger"/>
+        <ref bean="fileEventLogger"/>
+    </util:list>
+
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getInstance"/>
+
+    <!-- Prototypes -->
+
+    <bean id="date" class="java.util.Date" scope="prototype"/>
+
+</beans>
