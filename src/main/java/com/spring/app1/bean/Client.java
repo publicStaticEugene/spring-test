@@ -15,9 +15,13 @@ public class Client {
         this.fullName = fullName;
     }
 
-    @Value("${greeting}")
+    @Value("${greeting} #{systemEnvironment['USERNAME']} #{systemProperties['user.dir']}")
     public void setGreeting(final String greeting) {
         this.greeting = greeting;
+    }
+
+    public String getGreeting() {
+        return greeting;
     }
 
     public int getId() {

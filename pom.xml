@@ -27,6 +27,7 @@
 
         <spring.version>5.0.8.RELEASE</spring.version>
         <common-io.version>2.6</common-io.version>
+        <aspectj.version>1.9.1</aspectj.version>
     </properties>
 
     <dependencies>
@@ -51,10 +52,18 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- Apache commons -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${common-io.version}</version>
+        </dependency>
+
+        <!-- AOP -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
 
     </dependencies>

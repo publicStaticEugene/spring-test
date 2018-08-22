@@ -9,6 +9,7 @@ import java.util.List;
 
 @Component("combinedEventLogger")
 public class CombinedEventLogger implements EventLogger {
+
     @Resource(name = "loggerList")
     private final List<EventLogger> loggers;
 
@@ -16,6 +17,7 @@ public class CombinedEventLogger implements EventLogger {
         this.loggers = loggers;
     }
 
+    @Override
     public void logEvent(final Event event) {
         loggers.forEach(logger -> logger.logEvent(event));
     }
