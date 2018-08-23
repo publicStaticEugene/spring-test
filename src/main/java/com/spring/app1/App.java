@@ -24,8 +24,7 @@ public class App {
 
     @Autowired
     public App(final Client client,
-               @Value("#{T(com.spring.app1.bean.Event).isDay() ? fileEventLogger : consoleEventLogger}")
-               final EventLogger eventLogger) {
+               @Value("#{T(com.spring.app1.bean.Event).isDay() ? fileEventLogger : consoleEventLogger}") final EventLogger eventLogger) {
         this.client = client;
         this.eventLogger = eventLogger;
     }
@@ -39,6 +38,7 @@ public class App {
         final Client client = context.getBean("client", Client.class);
         System.out.println(client.getGreeting());
         System.out.println("default logger: " + app.eventLogger.getClass().getName());
+        System.out.println();
 
         app.logEvent("event for 1", EventType.INFO);
         app.logEvent("event for 2", EventType.ERROR);

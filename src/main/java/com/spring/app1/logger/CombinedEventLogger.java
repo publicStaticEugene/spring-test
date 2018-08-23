@@ -1,7 +1,6 @@
 package com.spring.app1.logger;
 
 import com.spring.app1.bean.Event;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
