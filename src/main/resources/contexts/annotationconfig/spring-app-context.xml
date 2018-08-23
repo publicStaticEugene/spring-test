@@ -26,13 +26,6 @@
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <util:map id="statisticMap" key-type="java.lang.String"
-              value-type="java.util.concurrent.atomic.AtomicInteger">
-        <entry key="consoleEventLogger" value-ref="atomicInt"/>
-        <entry key="fileEventLogger" value-ref="atomicInt"/>
-        <entry key="cacheFileEventLogger" value-ref="atomicInt"/>
-        <entry key="combinedEventLogger" value-ref="atomicInt"/>
-    </util:map>
 
     <util:list id="loggerList">
         <ref bean="consoleEventLogger"/>
@@ -40,6 +33,9 @@
     </util:list>
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getInstance"/>
+
+    <util:map id="statisticMap" key-type="java.lang.Class"
+              value-type="java.util.concurrent.atomic.AtomicInteger"/>
 
     <!-- Prototypes -->
 
